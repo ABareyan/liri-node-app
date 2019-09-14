@@ -12,28 +12,30 @@ var Spotify = require('node-spotify-api');
 
 var spotify = new Spotify(keys.spotify);
 
-console.log(spotify);
-
-
-
+var fs = require('fs');
 
 
 function result() {
+
     switch (userChoice) {
+
         case "concert-this":
+
             var request = require('request')
+
             var queryURL = "https://rest.bandsintown.com/artists/" + userInput + "/events?app_id=codingbootcamp";
-            console.log(queryURL);
+
+            // console.log(queryURL);
+
+            var data = JSON.parse(body);
+
+            var moment = require('moment');
+
+            var userInputCap = process.argv.slice(3).join(' ').toUpperCase();
 
             request(queryURL, function(error, response, body) {
 
-                var data = JSON.parse(body)
-                var moment = require('moment');
-
-                var userInputCap = process.argv.slice(3).join(' ').toUpperCase();
-
                 console.log('===================================\n\n' + userInputCap + '\n\n===================================');
-
 
                 for (var i = 0; i < data.length; i++) {
                     console.log('\n\nVenue name: ' + data[i].venue.name + '\n--------------------');
@@ -45,26 +47,16 @@ function result() {
                     var date = data[i].datetime;
                     date = moment(date).format("MM/DD/YYYY");
                     console.log('Date: ' + date + '\n==================');
-
-
-
                 }
-
-
-
-
-                // console.log(data[2]);
-                // console.log(date);
-
-
             });
-
-
             break;
+
 
         case "spotify-this-song":
 
-
+            if (userInput === "") {
+                userInput = "The Sign Ace of Base.";
+            }
 
             spotify.search({ type: 'track', query: userInput }, function(err, data) {
                 if (err) {
@@ -74,10 +66,22 @@ function result() {
 
                 var song = data.tracks.items
 
+                for (var i = 0; i < song.length; i++) {
+                    // console.log(song.length);
 
-                console.log(song);
-                console.log(song.length);
-
+                    if (song[i].preview_url === null) {
+                        console.log('\n========================\nArtist(s): ' + song[i].album.artists[0].name +
+                            "\n------------------------\nThe song's name: " + song[i].name +
+                            '\n------------------------\nThe album name: ' + song[i].album.name +
+                            '\n========================\n');
+                    } else {
+                        console.log('\n========================\nArtist(s): ' + song[i].album.artists[0].name +
+                            "\n------------------------\nThe song's name: " + song[i].name +
+                            '\n------------------------\nA preview link: ' + song[i].preview_url +
+                            '\n------------------------\nThe album name: ' + song[i].album.name +
+                            '\n========================\n');
+                    }
+                }
 
             });
 
@@ -91,6 +95,10 @@ function result() {
         case "movie-this":
 
             var axios = require('axios');
+
+            if (userInput === "") {
+                userInput = 'Mr. Nobody'
+            }
 
             var queryURL = "http://www.omdbapi.com/?t=" + userInput + "&y=&plot=short&apikey=trilogy";
 
@@ -111,8 +119,6 @@ function result() {
                 })
                 .catch(function(error) {
                     if (error.response) {
-                        // The request was made and the server responded with a status code
-                        // that falls out of the range of 2xx
                         console.log("---------------Data---------------");
                         console.log(error.response.data);
                         console.log("---------------Status---------------");
@@ -130,6 +136,24 @@ function result() {
                     console.log(error.config);
 
                 });
+            break;
+
+        case "do-what-it-says":
+
+            fs.readFile("random.txt", "utf-8", function(err, data) {
+                if (err) {
+                    return console.log(err);
+                }
+                var output = data.split(',');
+
+                userChoice = output[0];
+
+                userInput = output[1];
+
+                result();
+            });
+
+
             break;
 
     };
