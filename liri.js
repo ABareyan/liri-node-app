@@ -14,12 +14,25 @@ var spotify = new Spotify(keys.spotify);
 
 var fs = require('fs');
 
-
 function result() {
+
+    if (userInput !== "") {
+
+        var appendUserinput = process.argv.slice(3).join(' ');
+
+        fs.appendFile("log.txt", appendUserinput + '\n--------------------------\n', function(err) {
+            if (err) {
+                console.log(err);
+
+            }
+        });
+    }
 
     switch (userChoice) {
 
         case "concert-this":
+
+            fs.appendFile("log.txt", )
 
             var request = require('request')
 
@@ -126,11 +139,8 @@ function result() {
                         console.log("---------------Status---------------");
                         console.log(error.response.headers);
                     } else if (error.request) {
-                        // The request was made but no response was received
-                        // `error.request` is an object that comes back with details pertaining to the error that occurred.
                         console.log(error.request);
                     } else {
-                        // Something happened in setting up the request that triggered an Error
                         console.log("Error", error.message);
                     }
                     console.log(error.config);
@@ -152,10 +162,7 @@ function result() {
 
                 result();
             });
-
-
             break;
-
     };
 
 }
