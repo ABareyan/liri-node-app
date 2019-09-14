@@ -6,8 +6,6 @@ var userInput = process.argv.slice(3).join('+');
 
 var userChoice = process.argv[2];
 
-console.log(userChoice);
-
 var Spotify = require('node-spotify-api');
 
 var spotify = new Spotify(keys.spotify);
@@ -32,13 +30,9 @@ function result() {
 
         case "concert-this":
 
-            fs.appendFile("log.txt", )
-
             var request = require('request')
 
             var queryURL = "https://rest.bandsintown.com/artists/" + userInput + "/events?app_id=codingbootcamp";
-
-            // console.log(queryURL);
 
             var data = JSON.parse(body);
 
@@ -80,7 +74,6 @@ function result() {
                 var song = data.tracks.items
 
                 for (var i = 0; i < song.length; i++) {
-                    // console.log(song.length);
 
                     if (song[i].preview_url === null) {
                         console.log('\n========================\nArtist(s): ' + song[i].album.artists[0].name +
@@ -97,11 +90,6 @@ function result() {
                 }
 
             });
-
-
-            // console.log('this is loaded');
-
-
             break;
 
 
