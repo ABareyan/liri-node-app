@@ -36,7 +36,6 @@ function result() {
 
             var queryURL = "https://rest.bandsintown.com/artists/" + userInput + "/events?app_id=codingbootcamp";
 
-
             var moment = require('moment');
 
             var userInputCap = process.argv.slice(3).join(' ').toUpperCase();
@@ -112,7 +111,6 @@ function result() {
                                 date = moment(date).format("MM/DD/YYYY");
                                 console.log('Date: ' + date + '\n==================');
                                 array.push(randomFive);
-                                console.log(randomFive);
 
                             } else i--;
 
