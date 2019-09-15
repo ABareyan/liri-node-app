@@ -1,4 +1,4 @@
-On The Floor
+User input is: MADONNA
 --------------------------
-Matrix
+User input is: MADONNA
 --------------------------

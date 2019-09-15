@@ -12,16 +12,18 @@ var spotify = new Spotify(keys.spotify);
 
 var fs = require('fs');
 
+var inquirer = require("inquirer");
+
+
 function result() {
 
     if (userInput !== "") {
 
-        var appendUserinput = process.argv.slice(3).join(' ');
+        var appendUserinput = process.argv.slice(3).join(' ').toUpperCase();
 
-        fs.appendFile("log.txt", appendUserinput + '\n--------------------------\n', function(err) {
+        fs.appendFile("log.txt", "User input is: " + appendUserinput + '\n--------------------------\n', function(err) {
             if (err) {
                 console.log(err);
-
             }
         });
     }
@@ -34,7 +36,6 @@ function result() {
 
             var queryURL = "https://rest.bandsintown.com/artists/" + userInput + "/events?app_id=codingbootcamp";
 
-            var data = JSON.parse(body);
 
             var moment = require('moment');
 
@@ -42,19 +43,98 @@ function result() {
 
             request(queryURL, function(error, response, body) {
 
+                var data = JSON.parse(body);
+
                 console.log('===================================\n\n' + userInputCap + '\n\n===================================');
 
-                for (var i = 0; i < data.length; i++) {
-                    console.log('\n\nVenue name: ' + data[i].venue.name + '\n--------------------');
+                inquirer.prompt([{
+                    type: "list",
+                    name: "count",
+                    message: "How Many Venues Do You Want To See?",
+                    choices: ["First 1", "Any 1", "First 5", "Any 5", "All"]
+                }]).then(function(quantity) {
 
-                    if (data[i].venue.region === '') {
-                        console.log('Venue location\nCountry: ' + data[i].venue.country + '\nCity: ' + data[i].venue.city + '\n--------------------');
-                    } else console.log('Venue location\nCountry: ' + data[i].venue.country + '\nRegion: ' + data[i].venue.region + '\nCity: ' + data[i].venue.city + '\n--------------------');
+                    if (quantity.count === "First 1") {
+                        console.log('\n\nVenue name: ' + data[0].venue.name + '\n--------------------');
+                        if (data[0].venue.region === '') {
+                            console.log('Venue location\nCountry: ' + data[0].venue.country + '\nCity: ' + data[0].venue.city + '\n--------------------');
+                        } else console.log('Venue location\nCountry: ' + data[0].venue.country + '\nRegion: ' + data[0].venue.region + '\nCity: ' + data[0].venue.city + '\n--------------------');
 
-                    var date = data[i].datetime;
-                    date = moment(date).format("MM/DD/YYYY");
-                    console.log('Date: ' + date + '\n==================');
-                }
+                        var date = data[0].datetime;
+                        date = moment(date).format("MM/DD/YYYY");
+                        console.log('Date: ' + date + '\n==================');
+
+                    }
+                    if (quantity.count === "Any 1") {
+                        var randomOne = Math.floor(Math.random() * (data.length + 1));
+
+                        console.log('\n\nVenue name: ' + data[randomOne].venue.name + '\n--------------------');
+
+                        if (data[randomOne].venue.region === '') {
+                            console.log('Venue location\nCountry: ' + data[randomOne].venue.country + '\nCity: ' + data[randomOne].venue.city + '\n--------------------');
+                        } else console.log('Venue location\nCountry: ' + data[randomOne].venue.country + '\nRegion: ' + data[randomOne].venue.region + '\nCity: ' + data[randomOne].venue.city + '\n--------------------');
+
+                        var date = data[randomOne].datetime;
+                        date = moment(date).format("MM/DD/YYYY");
+                        console.log('Date: ' + date + '\n==================');
+
+                    }
+                    if (quantity.count === "First 5") {
+                        data.length = 5;
+                        for (var i = 0; i < data.length; i++) {
+                            console.log('\n\nVenue name: ' + data[i].venue.name + '\n--------------------');
+
+                            if (data[i].venue.region === '') {
+                                console.log('Venue location\nCountry: ' + data[i].venue.country + '\nCity: ' + data[i].venue.city + '\n--------------------');
+                            } else console.log('Venue location\nCountry: ' + data[i].venue.country + '\nRegion: ' + data[i].venue.region + '\nCity: ' + data[i].venue.city + '\n--------------------');
+
+                            var date = data[i].datetime;
+                            date = moment(date).format("MM/DD/YYYY");
+                            console.log('Date: ' + date + '\n==================');
+                        }
+                    }
+
+                    if (quantity.count === "Any 5") {
+                        var array = [];
+                        for (var i = 0; i < 5; i++) {
+
+                            var randomFive = Math.floor(Math.random() * (data.length + 1));
+
+                            if (!array.includes(randomFive)) {
+
+                                console.log('\n\nVenue name: ' + data[randomFive].venue.name + '\n--------------------');
+
+                                if (data[randomFive].venue.region === '') {
+                                    console.log('Venue location\nCountry: ' + data[randomFive].venue.country + '\nCity: ' + data[randomFive].venue.city + '\n--------------------');
+                                } else console.log('Venue location\nCountry: ' + data[randomFive].venue.country + '\nRegion: ' + data[randomFive].venue.region + '\nCity: ' + data[randomFive].venue.city + '\n--------------------');
+
+                                var date = data[randomFive].datetime;
+                                date = moment(date).format("MM/DD/YYYY");
+                                console.log('Date: ' + date + '\n==================');
+                                array.push(randomFive);
+                                console.log(randomFive);
+
+                            } else i--;
+
+                        }
+                    }
+                    if (quantity.count === "All") {
+
+                        for (var i = 0; i < data.length; i++) {
+                            console.log('\n\nVenue name: ' + data[i].venue.name + '\n--------------------');
+
+                            if (data[i].venue.region === '') {
+                                console.log('Venue location\nCountry: ' + data[i].venue.country + '\nCity: ' + data[i].venue.city + '\n--------------------');
+                            } else console.log('Venue location\nCountry: ' + data[i].venue.country + '\nRegion: ' + data[i].venue.region + '\nCity: ' + data[i].venue.city + '\n--------------------');
+
+                            var date = data[i].datetime;
+                            date = moment(date).format("MM/DD/YYYY");
+                            console.log('Date: ' + date + '\n==================');
+                        }
+                    }
+
+                });
+
             });
             break;
 
@@ -71,23 +151,106 @@ function result() {
                     return;
                 }
 
-                var song = data.tracks.items
+                var song = data.tracks.items;
 
-                for (var i = 0; i < song.length; i++) {
-
-                    if (song[i].preview_url === null) {
-                        console.log('\n========================\nArtist(s): ' + song[i].album.artists[0].name +
-                            "\n------------------------\nThe song's name: " + song[i].name +
-                            '\n------------------------\nThe album name: ' + song[i].album.name +
-                            '\n========================\n');
-                    } else {
-                        console.log('\n========================\nArtist(s): ' + song[i].album.artists[0].name +
-                            "\n------------------------\nThe song's name: " + song[i].name +
-                            '\n------------------------\nA preview link: ' + song[i].preview_url +
-                            '\n------------------------\nThe album name: ' + song[i].album.name +
-                            '\n========================\n');
+                inquirer.prompt([{
+                    type: "list",
+                    name: "count",
+                    message: "How Many Songs Do You Want To See?",
+                    choices: ["First 1", "Any 1", "First 5", "Any 5", "All"]
+                }]).then(function(quantity) {
+                    if (quantity.count === "First 1") {
+                        if (song[0].preview_url === null) {
+                            console.log('\n========================\nArtist(s): ' + song[0].album.artists[0].name +
+                                "\n------------------------\nThe song's name: " + song[0].name +
+                                '\n------------------------\nThe album name: ' + song[0].album.name +
+                                '\n========================\n');
+                        } else {
+                            console.log('\n========================\nArtist(s): ' + song[0].album.artists[0].name +
+                                "\n------------------------\nThe song's name: " + song[0].name +
+                                '\n------------------------\nA preview link: ' + song[0].preview_url +
+                                '\n------------------------\nThe album name: ' + song[0].album.name +
+                                '\n========================\n');
+                        }
                     }
-                }
+                    if (quantity.count === "Any 1") {
+                        var randomOne = Math.floor(Math.random() * (song.length + 1));
+                        if (song[randomOne].preview_url === null) {
+                            console.log('\n========================\nArtist(s): ' + song[randomOne].album.artists[0].name +
+                                "\n------------------------\nThe song's name: " + song[randomOne].name +
+                                '\n------------------------\nThe album name: ' + song[randomOne].album.name +
+                                '\n========================\n');
+                        } else {
+                            console.log('\n========================\nArtist(s): ' + song[randomOne].album.artists[0].name +
+                                "\n------------------------\nThe song's name: " + song[randomOne].name +
+                                '\n------------------------\nA preview link: ' + song[randomOne].preview_url +
+                                '\n------------------------\nThe album name: ' + song[randomOne].album.name +
+                                '\n========================\n');
+                        }
+                    }
+                    if (quantity.count === "First 5") {
+
+                        for (var i = 0; i < 5; i++) {
+                            if (song[i].preview_url === null) {
+                                console.log('\n========================\nArtist(s): ' + song[i].album.artists[0].name +
+                                    "\n------------------------\nThe song's name: " + song[i].name +
+                                    '\n------------------------\nThe album name: ' + song[i].album.name +
+                                    '\n========================\n');
+                            } else {
+                                console.log('\n========================\nArtist(s): ' + song[i].album.artists[0].name +
+                                    "\n------------------------\nThe song's name: " + song[i].name +
+                                    '\n------------------------\nA preview link: ' + song[i].preview_url +
+                                    '\n------------------------\nThe album name: ' + song[i].album.name +
+                                    '\n========================\n');
+                            }
+                        }
+                    }
+
+                    if (quantity.count === "Any 5") {
+
+                        var array = [];
+
+
+                        for (var i = 0; i < 5; i++) {
+                            var randomFive = Math.floor(Math.random() * (song.length + 1));
+
+                            if (!array.includes(randomFive)) {
+                                if (song[i].preview_url === null) {
+                                    console.log('\n========================\nArtist(s): ' + song[i].album.artists[0].name +
+                                        "\n------------------------\nThe song's name: " + song[i].name +
+                                        '\n------------------------\nThe album name: ' + song[i].album.name +
+                                        '\n========================\n');
+                                } else {
+                                    console.log('\n========================\nArtist(s): ' + song[i].album.artists[0].name +
+                                        "\n------------------------\nThe song's name: " + song[i].name +
+                                        '\n------------------------\nA preview link: ' + song[i].preview_url +
+                                        '\n------------------------\nThe album name: ' + song[i].album.name +
+                                        '\n========================\n');
+                                    array.push(randomFive);
+                                }
+                            } else i--;
+                        }
+                    }
+
+                    if (quantity.count === "All") {
+                        for (var i = 0; i < song.length; i++) {
+
+                            if (song[i].preview_url === null) {
+                                console.log('\n========================\nArtist(s): ' + song[i].album.artists[0].name +
+                                    "\n------------------------\nThe song's name: " + song[i].name +
+                                    '\n------------------------\nThe album name: ' + song[i].album.name +
+                                    '\n========================\n');
+                            } else {
+                                console.log('\n========================\nArtist(s): ' + song[i].album.artists[0].name +
+                                    "\n------------------------\nThe song's name: " + song[i].name +
+                                    '\n------------------------\nA preview link: ' + song[i].preview_url +
+                                    '\n------------------------\nThe album name: ' + song[i].album.name +
+                                    '\n========================\n');
+                            }
+                        }
+                    }
+
+                });
 
             });
             break;
