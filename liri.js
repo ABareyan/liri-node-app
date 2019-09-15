@@ -264,7 +264,6 @@ function result() {
 
             var queryURL = "http://www.omdbapi.com/?t=" + userInput + "&y=&plot=short&apikey=trilogy";
 
-            console.log(queryURL + '\n');
 
             axios.get(queryURL).then(function(response) {
                     console.log('==============================\n');
