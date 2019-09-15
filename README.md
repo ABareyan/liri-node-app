@@ -29,6 +29,7 @@ You can choose how many venues do you want to see
 * First five
 * Any five
 * All
+![Screen2](Screens/Input.png)
 
 LIRI's output will be 
 
@@ -36,7 +37,6 @@ LIRI's output will be
 * Venue location.
 * Date of the Event (use moment to format this as "MM/DD/YYYY").
 
-![Screen2](Screens/Input.png)
 ![Screen3](Screens/Output.png)
 
 3. Type in terminal node liri.js spotify-this-song <song name here> and press enter/retur
@@ -47,6 +47,7 @@ You can choose how many songs do you want to see
 * First five
 * Any five
 * All
+![Screen4](Screens/Input_song.pngg)
 
 LIRI's output will be 
 
@@ -55,7 +56,6 @@ LIRI's output will be
 * A preview link of the song from Spotify.
 * The album that the song is from.
 
-![Screen4](Screens/Input_song.pngg)
 ![Screen4](Screens/Output_song.png)
 
 4. Type in terminal node liri.js do-what-it-says and press enter/retur
