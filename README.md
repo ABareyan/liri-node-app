@@ -6,9 +6,9 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 
 ## How to use LIRI
 
-1. Type in terminal node liri.js movie-this '<movie name here>' and press enter/return
+1. Type in terminal node liri.js movie-this <movie name here> and press enter/return
 
-LIRI output will be 
+LIRI's output will be 
 
 * Title of the movie.
 * Year the movie came out.
@@ -20,3 +20,43 @@ LIRI output will be
 * Actors in the movie.
 
 ![Screen1](Screens/Movie_this.png)
+
+2. Type in terminal node liri.js concert-this <artist/band name here> and press enter/retur
+You can choose how many venues do you want to see
+
+* First one
+* Any one
+* First five
+* Any five
+* All
+
+LIRI's output will be 
+
+* Name of the venue.
+* Venue location.
+* Date of the Event (use moment to format this as "MM/DD/YYYY").
+
+![Screen2](Screens/Input.png)
+![Screen3](Screens/Output.png)
+
+3. Type in terminal node liri.js spotify-this-song <song name here> and press enter/retur
+You can choose how many songs do you want to see
+
+* First one
+* Any one
+* First five
+* Any five
+* All
+
+LIRI's output will be 
+
+* Artist(s).
+* The song's name.
+* A preview link of the song from Spotify.
+* The album that the song is from.
+
+![Screen4](Screens/Input_song.pngg)
+![Screen4](Screens/Output_song.png)
+
+4. Type in terminal node liri.js do-what-it-says and press enter/retur
+LIRI's output will be the same as point 3, the song name is "I Want it That Way".

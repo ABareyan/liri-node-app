@@ -44,3 +44,17 @@ User input is: CARS
 --------------------------
 User input is: CARS
 --------------------------
+User input is: MADONNA
+--------------------------
+User input is: MADONNA
+--------------------------
+User input is: MADONNA
+--------------------------
+User input is: FROZEN
+--------------------------
+User input is: FROZEN
+--------------------------
+User input is: MADONNA
+--------------------------
+User input is: ON THE FLOOR
+--------------------------
