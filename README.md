@@ -47,7 +47,7 @@ You can choose how many songs do you want to see
 * First five
 * Any five
 * All
-![Screen4](Screens/Input_song.pngg)
+![Screen4](Screens/Input_song.png)
 
 LIRI's output will be 
 
@@ -60,3 +60,12 @@ LIRI's output will be
 
 4. Type in terminal node liri.js do-what-it-says and press enter/retur
 LIRI's output will be the same as point 3, the song name is "I Want it That Way".
+
+
+
+## Autor 
+* **Arman Bareyan** - [ABareyan](https://github.com/ABareyan)
+
+## License
+
+No license agreements, do as you will with the program. 
