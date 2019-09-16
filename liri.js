@@ -208,7 +208,6 @@ function result() {
 
                         var array = [];
 
-
                         for (var i = 0; i < 5; i++) {
                             var randomFive = Math.floor(Math.random() * (song.length + 1));
 

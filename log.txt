@@ -58,3 +58,21 @@ User input is: MADONNA
 --------------------------
 User input is: ON THE FLOOR
 --------------------------
+User input is: ON THE FLOOR
+--------------------------
+User input is: GREEN BOOK
+--------------------------
+User input is: MADONNA
+--------------------------
+User input is: MADONNA
+--------------------------
+User input is: ON THE FLOOR
+--------------------------
+User input is: JOHN WEAK
+--------------------------
+User input is: MEN IN BLACK
+--------------------------
+User input is: MAN IN BLACK
+--------------------------
+User input is: FROZEN
+--------------------------
