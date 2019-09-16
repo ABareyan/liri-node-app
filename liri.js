@@ -2,9 +2,14 @@ require("dotenv").config();
 
 var keys = require("./keys.js");
 
+// user input movie name, song name, ...
 var userInput = process.argv.slice(3).join('+');
 
+//user choice movie-this, concert-this ...
 var userChoice = process.argv[2];
+
+// if the user wants to see only 5 results
+var length = 5;
 
 var Spotify = require('node-spotify-api');
 
@@ -16,6 +21,8 @@ var inquirer = require("inquirer");
 
 
 function result() {
+
+    // append user input (movie name, song name...)
 
     if (userInput !== "") {
 
@@ -29,6 +36,7 @@ function result() {
     }
 
     switch (userChoice) {
+
 
         case "concert-this":
 
@@ -46,6 +54,7 @@ function result() {
 
                 console.log('===================================\n\n' + userInputCap + '\n\n===================================');
 
+                //  the user choices how many results he/she wants to see
                 inquirer.prompt([{
                     type: "list",
                     name: "count",
@@ -53,6 +62,7 @@ function result() {
                     choices: ["First 1", "Any 1", "First 5", "Any 5", "All"]
                 }]).then(function(quantity) {
 
+                    // if the user coices first 1
                     if (quantity.count === "First 1") {
                         console.log('\n\nVenue name: ' + data[0].venue.name + '\n--------------------');
                         if (data[0].venue.region === '') {
@@ -64,8 +74,11 @@ function result() {
                         console.log('Date: ' + date + '\n==================');
 
                     }
+
+                    // if the user coices random 1
                     if (quantity.count === "Any 1") {
-                        var randomOne = Math.floor(Math.random() * (data.length + 1));
+
+                        var randomOne = Math.floor(Math.random() * data.length);
 
                         console.log('\n\nVenue name: ' + data[randomOne].venue.name + '\n--------------------');
 
@@ -78,9 +91,16 @@ function result() {
                         console.log('Date: ' + date + '\n==================');
 
                     }
+
+                    // if the user coices first 5
                     if (quantity.count === "First 5") {
-                        data.length = 5;
-                        for (var i = 0; i < data.length; i++) {
+
+                        // if results are less than 5
+                        if (data.length < 5) {
+                            console.log("\n-----------------------------------\nThis Artist/band has only " + data.length + " venues\n-----------------------------------");
+                            length = data.length;
+                        }
+                        for (var i = 0; i < length; i++) {
                             console.log('\n\nVenue name: ' + data[i].venue.name + '\n--------------------');
 
                             if (data[i].venue.region === '') {
@@ -93,12 +113,20 @@ function result() {
                         }
                     }
 
+                    // if the user coices random 5
                     if (quantity.count === "Any 5") {
+
                         var array = [];
-                        for (var i = 0; i < 5; i++) {
 
-                            var randomFive = Math.floor(Math.random() * (data.length + 1));
+                        // if results are less than 5
+                        if (data.length < 5) {
+                            console.log("\n-----------------------------------\nThis Artist/band has only " + data.length + " venues\n-----------------------------------");
+                            length = data.length;
+                        }
+                        for (var i = 0; i < length; i++) {
 
+                            var randomFive = Math.floor(Math.random() * data.length);
+                            // random numbers not repeated
                             if (!array.includes(randomFive)) {
 
                                 console.log('\n\nVenue name: ' + data[randomFive].venue.name + '\n--------------------');
@@ -116,6 +144,8 @@ function result() {
 
                         }
                     }
+
+                    // if the user coices all
                     if (quantity.count === "All") {
 
                         for (var i = 0; i < data.length; i++) {
@@ -157,6 +187,7 @@ function result() {
                     message: "How Many Songs Do You Want To See?",
                     choices: ["First 1", "Any 1", "First 5", "Any 5", "All"]
                 }]).then(function(quantity) {
+
                     if (quantity.count === "First 1") {
                         if (song[0].preview_url === null) {
                             console.log('\n========================\nArtist(s): ' + song[0].album.artists[0].name +
@@ -172,7 +203,7 @@ function result() {
                         }
                     }
                     if (quantity.count === "Any 1") {
-                        var randomOne = Math.floor(Math.random() * (song.length + 1));
+                        var randomOne = Math.floor(Math.random() * song.length);
                         if (song[randomOne].preview_url === null) {
                             console.log('\n========================\nArtist(s): ' + song[randomOne].album.artists[0].name +
                                 "\n------------------------\nThe song's name: " + song[randomOne].name +
@@ -188,7 +219,12 @@ function result() {
                     }
                     if (quantity.count === "First 5") {
 
-                        for (var i = 0; i < 5; i++) {
+                        if (song.length < 5) {
+                            console.log("\n-----------------------------------\nThis song has only " + song.length + " spotify\n-----------------------------------");
+                            length = song.length;
+                        }
+
+                        for (var i = 0; i < length; i++) {
                             if (song[i].preview_url === null) {
                                 console.log('\n========================\nArtist(s): ' + song[i].album.artists[0].name +
                                     "\n------------------------\nThe song's name: " + song[i].name +
@@ -207,9 +243,13 @@ function result() {
                     if (quantity.count === "Any 5") {
 
                         var array = [];
+                        if (song.length < 5) {
+                            console.log("\n-----------------------------------\nThis song has only " + song.length + " spotify\n-----------------------------------");
+                            length = song.length;
+                        }
 
-                        for (var i = 0; i < 5; i++) {
-                            var randomFive = Math.floor(Math.random() * (song.length + 1));
+                        for (var i = 0; i < song; i++) {
+                            var randomFive = Math.floor(Math.random() * song.length);
 
                             if (!array.includes(randomFive)) {
                                 if (song[i].preview_url === null) {
