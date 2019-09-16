@@ -6,7 +6,7 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 
 ## How to use LIRI
 
-1. Type in terminal node liri.js movie-this then movie name and press enter/return
+1. Type in terminal node liri.js movie-this then movie's name and press enter/return
 
 LIRI's output will be 
 
@@ -21,7 +21,7 @@ LIRI's output will be
 
 ![Screen1](Screens/Movie_this.png)
 
-2. Type in terminal node liri.js concert-this, then artist or band namew and press enter/retur
+2. Type in terminal node liri.js concert-this, then artist's or band's name and press enter/return
 You can choose how many venues do you want to see
 
 * First one
@@ -39,7 +39,7 @@ LIRI's output will be
 
 ![Screen3](Screens/Output.png)
 
-3. Type in terminal node liri.js spotify-this-song, then song name and press enter/retur
+3. Type in terminal node liri.js spotify-this-song, then song's name and press enter/return
 You can choose how many songs do you want to see
 
 * First one
