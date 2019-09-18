@@ -6,6 +6,8 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 
 ## How to use LIRI
 
+![Gif](Screens/Screen.gif)
+
 1. Type in terminal node liri.js movie-this then movie's name and press enter/return
 
 LIRI's output will be 

@@ -1,2 +1,77 @@
 User input is: MAROON 5
+--------------------------User input is: FROZEN
+--------------------------
+User input is: MAROON 5
+--------------------------
+User input is: ON THE FLOOR
+--------------------------
+User input is: FROZEN
+--------------------------
+User input is: 
+--------------------------
+User input is: MAROON 5
+--------------------------
+User input is: ON THE FLOOR
+--------------------------
+User input is: FROZEN
+--------------------------
+User input is: 
+--------------------------
+User input is: MAROON 5
+--------------------------
+User input is: MAROON 5
+--------------------------
+User input is: ON THE FLOOR
+--------------------------
+User input is: FROZEN
+--------------------------
+User input is: 
+--------------------------
+User input is: MAROON 5
+--------------------------
+User input is: ON THE FLOOR
+--------------------------
+User input is: FROZEN
+--------------------------
+User input is: 
+--------------------------
+User input is: 
+--------------------------
+User input is: 
+--------------------------
+User input is: 
+--------------------------
+User input is: 
+--------------------------
+User input is: 
+--------------------------
+User input is: 
+--------------------------
+User input is: 
+--------------------------
+User input is: ON THE FLOOR
+--------------------------
+User input is: MADONNA
+--------------------------
+User input is: MADONNA
+--------------------------
+User input is: ON THE FLOOR
+--------------------------
+User input is: ON THE FLOOR
+--------------------------
+User input is: 
+--------------------------
+User input is: MAROON 5
+--------------------------
+User input is: ON THE FLOOR
+--------------------------
+User input is: FROZEN
+--------------------------
+User input is: FROZEN
+--------------------------
+User input is: ON THE FLOOR
+--------------------------
+User input is: MAROON 5
+--------------------------
+User input is: 
 --------------------------

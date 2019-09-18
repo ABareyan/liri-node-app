@@ -248,7 +248,7 @@ function result() {
                             length = song.length;
                         }
 
-                        for (var i = 0; i < song; i++) {
+                        for (var i = 0; i < length; i++) {
                             var randomFive = Math.floor(Math.random() * song.length);
 
                             if (!array.includes(randomFive)) {
