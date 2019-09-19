@@ -20,6 +20,8 @@ var fs = require('fs');
 var inquirer = require("inquirer");
 
 
+
+
 function result() {
 
     // append user input (movie name, song name...)
@@ -350,6 +352,13 @@ function result() {
                 result();
             });
             break;
+        default:
+            console.log("\n\n===============================\n\nYou don't choise any of options, I'll do it for you\n");
+            userChoice = "movie-this";
+            userInput = "The Green Mile";
+            result();
+
+
     };
 
 }
